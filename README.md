@@ -117,7 +117,7 @@ php artisan test
 ### 1. Create Hold
 
 GET /api/products/{id}
-    Returns: id , title , initial_stock , available_stock , price
+-   Returns: id , title , initial_stock , available_stock , price
     
 POST /api/holds
 
