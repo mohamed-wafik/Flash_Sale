@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520">
+  <style>
+    .table { fill:#f8f9fb; stroke:#2b2f33; stroke-width:1.5 }
+    .title { font: bold 14px sans-serif; fill:#0b3b5a }
+    .col { font: 12px monospace; fill:#222 }
+    .pk { font-weight: bold; fill:#b03a2e }
+    .relation { stroke:#0b3b5a; stroke-width:1.2; marker-end: url(#arrow) }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b3b5a"/>
+    </marker>
+  </defs>
+
+  <!-- Users -->
+  <g transform="translate(40,30)">
+    <rect class="table" width="220" height="120" rx="6" ry="6"/>
+    <text x="12" y="26" class="title">users</text>
+    <text x="12" y="50" class="col"><tspan class="pk">id</tspan> : integer (PK)</text>
+    <text x="12" y="70" class="col">name : string</text>
+    <text x="12" y="88" class="col">email : string</text>
+    <text x="12" y="106" class="col">password : string (hidden)</text>
+  </g>
+
+  <!-- Products -->
+  <g transform="translate(300,30)">
+    <rect class="table" width="260" height="140" rx="6" ry="6"/>
+    <text x="12" y="26" class="title">products</text>
+    <text x="12" y="50" class="col"><tspan class="pk">id</tspan> : integer (PK)</text>
+    <text x="12" y="68" class="col">title : string</text>
+    <text x="12" y="86" class="col">initial_stock : integer</text>
+    <text x="12" y="104" class="col">available_stock : integer</text>
+    <text x="12" y="122" class="col">price : integer / cents</text>
+  </g>
+
+  <!-- Holds -->
+  <g transform="translate(640,30)">
+    <rect class="table" width="300" height="180" rx="6" ry="6"/>
+    <text x="12" y="26" class="title">holds</text>
+    <text x="12" y="50" class="col"><tspan class="pk">id</tspan> : integer (PK)</text>
+    <text x="12" y="68" class="col">uuid : uuid (public)</text>
+    <text x="12" y="86" class="col">product_id : integer (FK → products.id)</text>
+    <text x="12" y="104" class="col">qty : integer</text>
+    <text x="12" y="122" class="col">expires_at : datetime</text>
+    <text x="12" y="140" class="col">used : boolean</text>
+    <text x="12" y="158" class="col">released : boolean</text>
+  </g>
+
+  <!-- Orders -->
+  <g transform="translate(180,220)">
+    <rect class="table" width="300" height="140" rx="6" ry="6"/>
+    <text x="12" y="26" class="title">orders</text>
+    <text x="12" y="50" class="col"><tspan class="pk">id</tspan> : integer (PK)</text>
+    <text x="12" y="68" class="col">public_id : uuid (public)</text>
+    <text x="12" y="86" class="col">product_id : integer (FK → products.id)</text>
+    <text x="12" y="104" class="col">qty : integer</text>
+    <text x="12" y="122" class="col">status : string (created|paid|cancelled)</text>
+  </g>
+
+  <!-- Payments -->
+  <g transform="translate(540,220)">
+    <rect class="table" width="300" height="120" rx="6" ry="6"/>
+    <text x="12" y="26" class="title">payments</text>
+    <text x="12" y="50" class="col"><tspan class="pk">id</tspan> : integer (PK)</text>
+    <text x="12" y="68" class="col">idempotency_key : string (unique)</text>
+    <text x="12" y="86" class="col">order_id : uuid (references orders.public_id)</text>
+    <text x="12" y="104" class="col">status : string (success|failed)</text>
+  </g>
+
+  <!-- Relations (arrows) -->
+  <line class="relation" x1="360" y1="100" x2="640" y2="100" />
+  <text x="500" y="92" font-family="sans-serif" font-size="12" fill="#0b3b5a">products.id → holds.product_id</text>
+
+  <line class="relation" x1="310" y1="320" x2="430" y2="220" />
+  <text x="340" y="300" font-family="sans-serif" font-size="12" fill="#0b3b5a">products.id → orders.product_id</text>
+
+  <line class="relation" x1="720" y1="200" x2="470" y2="280" />
+  <text x="640" y="240" font-family="sans-serif" font-size="12" fill="#0b3b5a">orders.public_id → payments.order_id</text>
+
+  <line class="relation" x1="710" y1="150" x2="510" y2="140" />
+  <text x="610" y="128" font-family="sans-serif" font-size="12" fill="#0b3b5a">holds.order_id → orders.id (optional)</text>
+
+  <!-- footer note -->
+  <text x="20" y="500" font-family="sans-serif" font-size="12" fill="#444">Generated diagram: key tables and common relations used by the application. Adjust per migrations if needed.</text>
+</svg>
