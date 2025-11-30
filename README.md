@@ -40,6 +40,8 @@ This document provides a complete explanation of the **Flash_Sale** project, inc
 ### tests/Feature
 
 -   Integration tests such as `PaymentTest.php`
+-   Integration tests such as `ProductTest.php`
+  
 
 ---
 
@@ -114,6 +116,9 @@ php artisan test
 
 ### 1. Create Hold
 
+GET /api/products/{id}
+    Returns: id , title , initial_stock , available_stock , price
+    
 POST /api/holds
 
 -   product_id
