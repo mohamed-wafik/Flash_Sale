@@ -68,13 +68,20 @@ This ensures:
 
 ## Running the Project Locally
 
-### 1. Install dependencies
+### 1. Clone the project
+
+```
+git clone https://github.com/mohamed-wafik/Flash_Sale.git
+cd Flash_Sale
+```
+
+### 2. Install dependencies
 
 ```
 composer install
 ```
 
-### 2. Create `.env`
+### 3. Create `.env`
 
 ```
 cp .env.example .env
@@ -82,13 +89,13 @@ cp .env.example .env
 
 Update DB settings.
 
-### 3. Run migrations
+### 4. Run migrations
 
 ```
 php artisan migrate
 ```
 
-### 4. Start server
+### 5. Start server
 
 ```
 php artisan serve
@@ -136,7 +143,7 @@ Handles repeated webhook calls using idempotency.
 
 ## Database Diagram
 
-<img src="./public/build/assets/image/desgin-db.png" alt="desgin data base" width="100%" />
+<img src="./storage/image/desgin-db.png" alt="desgin data base" width="100%" />
 
 Diagram file: `docs/db_design.svg`
 
