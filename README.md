@@ -30,7 +30,6 @@ This document provides a complete explanation of the **Flash_Sale** project, inc
 -   Hold
 -   Order
 -   Payment
--   User
 
 ### routes/api.php
 
@@ -148,10 +147,3 @@ Handles repeated webhook calls using idempotency.
 Diagram file: `docs/db_design.svg`
 
 ---
-
-## Extensions Available
-
--   Add curl examples
--   Add Postman collection
--   Add Sequence Diagram
--   Add workflow description
