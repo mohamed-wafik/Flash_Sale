@@ -144,6 +144,4 @@ Handles repeated webhook calls using idempotency.
 
 <img src="./storage/image/desgin-db.png" alt="desgin data base" width="100%" />
 
-Diagram file: `docs/db_design.svg`
-
 ---
